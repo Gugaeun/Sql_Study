@@ -11,3 +11,18 @@ GROUP BY
 	department_id
 ORDER BY
 	count(employee_id)DESC;
+-----------------------------------------------------------------------------
+
+SELECT * FROM employees WHERE employee_id IN (134, 150) OR salary_amount > 380; 
+
+-------------------------------------------------------------------------------
+
+-- case when 구문
+
+SELECT case when department_id = 50 then '영업부',
+				when employee_id = 80 then '회계감사부서',
+				ELSE '듣보잡부서'
+		 END AS `부서명`,
+		 employee_id,
+		 salary_amount
+FROM employees;
