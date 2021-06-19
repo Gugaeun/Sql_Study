@@ -25,5 +25,5 @@ SELECT case when department_id = 50 then '영업부',
 		 END AS `부서명`,
 		 employee_id,
 		 salary_amount
-FROM employees;
-LIMIT 5
+FROM employees
+LIMIT 1, 2;
