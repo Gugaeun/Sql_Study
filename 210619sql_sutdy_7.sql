@@ -20,10 +20,16 @@ SELECT * FROM employees WHERE employee_id IN (134, 150) OR salary_amount > 380;
 -- case when 구문
 
 SELECT case when department_id = 50 then '영업부',
-				when employee_id = 80 then '회계감사부서',
+				when department_id = 80 then '회계감사부서',
 				ELSE '듣보잡부서'
 		 END AS `부서명`,
 		 employee_id,
 		 salary_amount
 FROM employees
 LIMIT 1, 2;
+
+-- insert select 구문
+
+INSERT INTO employees(department_id, employee_id, hire_date, hire_year,
+				salary_amount, job_id
+} SELECT 70, 200, '2021-02-01', '2021', 300, 'ABDF';
