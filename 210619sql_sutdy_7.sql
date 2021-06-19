@@ -26,3 +26,4 @@ SELECT case when department_id = 50 then '영업부',
 		 employee_id,
 		 salary_amount
 FROM employees;
+LIMIT 5
