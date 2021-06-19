@@ -79,7 +79,7 @@ SELECT concat(hire_year, '-', SUBSTRING(hire_date, 6, 5)) AS `입사년월일`
 	, RIGHT(job_id, 2) AS job_id
  FROM employees;
 --------------------------------------------------------------------------------
--- sql 집합 연산(UNION(합집합), UNION ALL(모든 합집합), MINUS(차집합), JOIN(교집합))
+-- sql 집합 연산(UNION(합집합), UNION ALL(모든 합집합), JOIN(교집합))
 
 SELECT department_id, employee_id, salary_amount, job_id
 FROM employees
@@ -93,3 +93,29 @@ UNION ALL
 SELECT department_id, employee_id, salary_amount, job_id
 FROM employees
 WHERE employee_id IN(123, 124);
+-------------------------------------------------------------------
+-- JOIN
+SELECT e1.department_id, e1.employee_id, e1.salary_amount, e1.job_id
+FROM employees e1
+LEFT JOIN emplyees e2 ON e1.employee_id = e2.employee_id AND e2.employee_id NOT IN (122)
+WHERE e1.employee_id IN(120, 121, 122) AND e2.employee_id IS NOT NULL;
+
+-- distinct
+
+SELECT
+	count(distinct department_id, employee_id)
+FROM
+	employees;
+
+SELECT @@VERSION; 	-- sql 버전 확인
+SELECT @@GLOBAL.log_output;
+SELECT @@GLOBAL.general_log;
+
+SET GLOBAL log_output = 'table';
+
+SET GLOBAL general_log = 1;
+
+SELECT * FROM mysql.general_log;
+
+
+	
