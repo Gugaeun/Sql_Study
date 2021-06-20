@@ -134,6 +134,7 @@ SET title = 'China_Movie'
 WHERE 
 	description Like '%china%';
 	
+------------------------------------------------------------------------
 -- film 테이블에서 영화 등급 종류(distinct 사용) 를 표시하는 컬럼
 
 SELECT
@@ -157,5 +158,37 @@ INNER JOIN
 INNER JOIN
 	category c1
 	ON c1.category_id = fc1.category_id
-ORDER BY 
-	f1.film_id = ASC;
+-- ORDER BY 
+-- 	f1.film_id = ASC;
+
+------------------------------------------------------------------------
+-- rental, inventory 테이블의 inventory_id를 기준으로 left join 쿼리 작성
+
+SELECT
+	r1.*,
+	i1.*
+FROM
+	rental r1
+LEFT JOIN
+	inventory i1
+	ON r1.inventory_id = i1.inventory_id;
+------------------------------------------------------------------------
+-- address 테이블과 city 테이블을 city_id를 기준으로 결합해보자(Left join, Right join)
+-- (address, address2, city, city_id 컬럼의 데이터를 선택해서, 도시명과 주소를 한 테이블에 보이게 하기)
+
+SELECT a.address, a.address2, b.city, c1.city_id;
+FROM
+	address a
+LEFT JOIN
+	city b
+	ON a.city_id = b.city_id;
+--
+SELECT a.address, a.address2, b.city, c1.city_id;
+FROM
+	address a
+RIGHT JOIN
+	city b
+	ON a.city_id = b.city_id
+WHERE a.address2 IS NOT NULL
+ORDER BY a.city_id;
+
