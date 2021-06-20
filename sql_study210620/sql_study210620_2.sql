@@ -58,11 +58,53 @@ INNER JOIN
 	ON ci1.city_id = ad1.city_id
 INNER JOIN
 	sakila.country co1
-	ON co1.country_id = cil.country_id;
+	ON co1.country_id = cil.country_id
 	
---------------------------------------------------------------------------------------
+DESC sakila.country
+DESC sakila.address;
 
+	
+SELECT 
+	t1.*, t2.*
+FROM `testdb2`.table1 t1
+JOIN
+	`testdb2`.table2 t2
+	ON t1.id1 = t2.id2;
+	
+SELECT * FROM `testdb2`.table1 t1;
+SELECT * FROM `testdb2`.table2 t2;
 
-
+---------------------------------------------------------------------------------------
 -- outer join(외부 조인)
--- -> left 외부 조인, right 외부 조인
+-- -> left 외부 조인
+SELECT 
+	t1.*
+FROM 
+	`testdb2`.table1 t1
+LEFT JOIN 
+	`testdb2`.table2 t2
+	ON t1.id1 = t2.id2;
+	
+-- table1, table2 left join
+
+SELECT 
+	t1.id1,
+	t1.date1,
+	t2.id2,
+	t2.date1
+FROM 
+	`testdb2`.table1 t1
+LEFT JOIN 
+	`testdb2`.table2 t2
+	ON t1.id1 = t2.id2
+WHERE
+	t1.id1 IS NOT NULL;
+
+-- -> right 외부 조인
+SELECT 
+	t1.*, t2.*
+FROM 
+	`testdb2`.table1 t1
+RIGHT JOIN 
+	`testdb2`.table2 t2
+	ON t1.id1 = t2.id2;
