@@ -190,5 +190,5 @@ RIGHT JOIN
 	city b
 	ON a.city_id = b.city_id
 WHERE a.address2 IS NOT NULL
-ORDER BY a.city_id;
+;
 
