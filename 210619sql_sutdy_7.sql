@@ -6,7 +6,7 @@ SELECT
   COUNT(employee_id) AS '부서별 인원수'
 FROM employees e1
 WHERE 1=1
-	AND hire_year >= '2014' AND hire_year < '2020'
+	AND hire_year >= '2014' AND hire_year < '2020'employees
 GROUP BY
 	department_id
 ORDER BY
