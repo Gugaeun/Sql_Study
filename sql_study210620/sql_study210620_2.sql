@@ -26,7 +26,41 @@ FROM
 	employees e1
 JOIN 
 	departments d1 ON d1.`code` = e1.department_id;
+	
+--------------------------------------------------------------------
+
+-- country 코드 값이 'ABW' 를 가진 나라의 도시 이름과 사용하는 언어 정보를 가져오는 쿼리
+
+SELECT
+	co1.`Name` AS '나라이름',
+	ci1.`Name` AS '도시이름',
+--	cl1.`Language` AS '사용언어'
+FROM country co1
+INNER JOIN 
+	city ci1 
+	ON ci1.CountryCode = co1.`Code`
+-- INNER JOIN
+--	countrylanguage cl1
+--	ON cl1.CountryCode = co1.`Code`
+WHERE 
+	co1.`Code` IN ('AFG');
+
+-------------------------------------------------------------------------------------
+	
+-- saklia DB에서 모든 주소 정보와 도시 정보, 나라 정보를 표시하는 쿼리를 작성
+
+SELECT
+	*
+FROM 
+	sakila.address ad1
+INNER JOIN
+	sakila.city ci1 
+	ON ci1.city_id = ad1.city_id
+INNER JOIN
+	sakila.country co1
+	ON co1.country_id = cil.country_id;
+	
+--------------------------------------------------------------------------------------
 
 -- outer join(외부 조인)
--- -> left 외부 조인,city
--- -> right  외부 조인
+-- -> left 외부 조인, right 외부 조인
