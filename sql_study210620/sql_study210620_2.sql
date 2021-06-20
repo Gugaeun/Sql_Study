@@ -108,3 +108,54 @@ FROM
 RIGHT JOIN 
 	`testdb2`.table2 t2
 	ON t1.id1 = t2.id2;
+	
+---------------------------------------------------------------------
+SELECT * FROM world.city;
+SELECT * FROM world.country;
+
+SELECT
+	ci1.*, co1.*
+FROM world.city ci1
+LEFT JOIN
+	world.country co1
+	ON ci1.`name` = co1.`name`
+	
+SELECT * FROM world.city WHERE `name` LIKE '%seoul%';
+SELECT * FROM world.country WHERE `name` LIKE '%korea';
+
+------------------------------------------------------------------------
+
+SELECT * FROM sakila.film WHERE description LIKE '%china%'
+
+-- film 테이블에서 중국을 배경으로 한 영화를 찾아 제목을 'China_Movie' 로 변경
+
+UPDATE sakila.film
+SET title = 'China_Movie'
+WHERE 
+	description Like '%china%';
+	
+-- film 테이블에서 영화 등급 종류(distinct 사용) 를 표시하는 컬럼
+
+SELECT
+	DISTINCT rating
+FROM
+	sakila.film;
+	
+-- film, film_category, category 테이블을 film_id와 category_id 를 기준으로 결해서 결과를 
+-- film_id로 오름차순 정렬(film_id, title, category_id, name)
+
+SELECT 
+	f1.film_id,
+	f1.title,
+	fc1.category_id,
+	c1.`name`
+FROM
+	film f1
+INNER JOIN
+	film_category fc1
+	ON fc1.film_id = f1.film_id
+INNER JOIN
+	category c1
+	ON c1.category_id = fc1.category_id
+ORDER BY 
+	f1.film_id = ASC;
