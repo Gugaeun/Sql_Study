@@ -1,9 +1,9 @@
-package springmvc.model;
+package spring.model.dto.request;
 
-import exceptions.WrongIdPasswordException;
+import exception.WrongIdPasswordException;
 
 public class RegisterRequest {
-	private String email;                     // 회원이 가지는 이메일(고객이 입력)
+    private String email;                     // 회원이 가지는 이메일(고객이 입력)
     private String password;                  // 비밀번호(고객입력)
     private String confirmPassword;           // 확인용 비밀번호
     private String name;                      // 회원이름(고객입력)

@@ -4,16 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import exceptions.DuplicateMemberDaoException;
 import springmvc.model.RegisterRequest;
 import springmvc.service.MemberRegisterService;
-import springmvc.utils.RegisterRequestValidator;
 
 @Controller
 @RequestMapping("/register")
@@ -47,22 +44,12 @@ public class MemberRegisterController {
 		model.addAttribute("registerRequest", new RegisterRequest());
 		return "register/step2";
 	}
-	
+
 	@PostMapping("/step3")
-	// Errors객체를 생성해서 유효성 체크
-	public String handleStep3(RegisterRequest regReq, Model model, Errors errors) {
-		new RegisterRequestValidator().validate(regReq, errors);
-		
-		if(errors.hasErrors())
-			return "register/step2";
-	
-		try {
-			long retMemberNum = memberRegisterService.regist(regReq);
-			model.addAttribute("memberNum", retMemberNum);
-		} catch(DuplicateMemberDaoException ex) {
-			errors.rejectValue("email", "duplicate");
-			return "register/step2";
-		}
+	public String handleStep3(RegisterRequest regReq, Model model) {
+		// 실제 Map메모리에 사용자가 입력한 회원가입 정보 저장
+		long retMemberNum = memberRegisterService.regist(regReq);
+		model.addAttribute("memberNum", retMemberNum);
 		
 		return "register/step3";
 	}

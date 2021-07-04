@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<p>
 		<spring:message code="register.done">
 			<spring:argument value="${registerRequest.name}" />
-			(<spring:argument value="${registerRequest.email}" />
+			<spring:argument value="${registerRequest.email}" />  
 		</spring:message>
 	<p>
 		<a href="/spring_study_210627/main">

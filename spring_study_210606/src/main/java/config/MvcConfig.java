@@ -3,7 +3,6 @@ package config;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.HttpRequestHandler;
@@ -21,11 +20,11 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
 @EnableWebMvc
-public class MvcConfig implements WebMvcConfigurer
+public class MvcConfig 
+	implements WebMvcConfigurer
 {
 	/*
 	@Bean
@@ -92,14 +91,5 @@ public class MvcConfig implements WebMvcConfigurer
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/main").setViewName("main");
-	}
-	
-	@Bean
-	public MessageSource messageSource() {
-		ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
-		ms.setBasenames("messages.label");
-		ms.setDefaultEncoding("UTF-8");
-		
-		return ms;
 	}
 }
